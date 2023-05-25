@@ -1,0 +1,154 @@
+<html>
+
+    <head>        
+        <title>Aplikasi Klasifikasi Data Iris</title>
+    </head>
+    <style>
+
+        html, body, h1, h2, h3, p, img {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+        }
+        h1, h2, p{
+            cursor:default;
+        }
+        .cf:before,
+        .cf:after {
+            content: " ";
+            display: table;
+        }
+        .cf:after {
+            clear: both;
+        }
+        .cf {
+            *zoom: 1;
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+        }
+        body #container {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+
+            /* border: 1px solid black; */
+            border-radius: 20px;
+            width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            box-sizing: border-box;
+
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+        body #judul {
+            margin: 0px auto 20px;
+            text-transform: uppercase;
+        }
+        body #form {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body #form .form-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .label{
+            width: 100px;
+            margin-top: 15px;
+        }
+        .input {
+            width: 300px;
+
+        }
+        
+        label, input {
+            display: block;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-bottom: 34px;
+        }
+        input {
+            width: 300px;
+            padding: 6px 10px;
+        }
+        button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 28px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border-radius: 12px;
+          cursor: pointer;
+          margin: 20px 0;
+        }
+        button:hover {
+            background-color: orange;
+        }
+        #hasil {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #hasil .hasilatas {
+            display: flex;
+        }
+        #hasil .hasilatas p {
+            margin-right: 20px;
+        }
+    </style>
+    <body>
+
+        <div id="container">
+            <div id="judul" ><h1>Klasifikasi data Iris</h1></div>
+            <form action="{{ url_for('predict') }}" method="post">
+                <div id="form">
+                    <div class="form-input">
+                        <div class="label">
+                            <label for="outlook" >Outlook</label>
+                            <label for="temperature" >Temperature</label >
+                            <label for="humidity" >Humidity</label >
+                            <label for="wind" >Wind</label >
+                        </div>
+                        <div class="input">
+                            <input type="text" name="outlook" placeholder="outlook" require ="outlook"/>
+                            <input type="text" name="temperature" placeholder="temperature" required="required"/>
+                            <input type="text" name="humidity" placeholder="humidity" required="required"/>
+                            <input type="text" name="wind" placeholder="wind" required="required"/>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit">KLASIFIKASI IRIS</button> 
+                    </div>
+                </div>    
+            </form>
+            <section>
+                <div id="hasil">
+
+                    <div class="hasilatas">
+                        <div class="p"><p>outlook: {{ outlook }} </p></div>
+                        <div class="p"><p>temperature: {{ temperature }}</p></div>
+                        <div class="p"><p>humidity: {{ humidity }}</p></div>
+                        <div class="p"><p>wind: {{ wind }}</p></div>
+                    </div>
+                    
+                    <div>
+                        <h1 style="margin: 40px 0 0;">Hasil klasifikasi data iris adalah</h1>
+                        <h2 style="text-align: center; margin: 20px 0"> {{ hasil }}</h2>
+                    </div>
+
+                </div>   
+            </section> 
+        </div>
+        
+
+    </body>
+</html>

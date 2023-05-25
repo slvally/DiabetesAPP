@@ -1,0 +1,115 @@
+<html>
+
+    <head>        
+        <title>Aplikasi Klasifikasi Diabetes</title>
+    </head>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <body>
+
+        <h1>Klasifikasi Diabetes:</h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+
+                <label for="Pregnancies" >
+                    Pregnancies
+                </label>
+                <input type="text" name="Pregnancies" placeholder="Pregnancies" required="required"/>
+
+                <label for="Glucose">
+                    Glucose
+                </label >
+                <input type="text" name="Glucose" placeholder="Glucose" required="required"/>
+
+                <label for="BloodPressure" >
+                    Blood Pressure
+                </label >
+                <input type="text" name="BloodPressure" placeholder="BloodPressure" required="required"/>
+
+                <label for="SkinThickness">
+                    Skin Thickness
+                </label >
+                <input type="text" name="SkinThickness" placeholder="SkinThickness" required="required"/>
+
+                <label for="Insulin">
+                    Insulin
+                </label >
+                <input type="text" name="Insulin" placeholder="Insulin" required="required"/>
+
+                <label for="BMI">
+                    BMI
+                </label >
+                <input type="text" name="BMI" placeholder="BMI" required="required"/>
+
+                <label for="DiabetesPedigreeFunction">
+                    DiabetesPedigreeFunction
+                </label >
+                <input type="text" name="DiabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" required="required"/>
+
+                <label for="Age">
+                    Age
+                </label >
+                <input type="text" name="Age" placeholder="Age" required="required"/>
+
+                <button type="submit">KLASIFIKASI IRIS</button>
+            </form>
+        </main>
+
+        <section>
+            <table>
+                <tr>
+                    <td><p>Pregnancies </p></td>
+                    <td>:</td>
+                    <td>{{ Pregnancies }}</td>
+                </tr>
+                <tr>
+                    <td><p>Glucose </p></td>
+                    <td>:</td>
+                    <td>{{ Glucose }}</td>
+                </tr>
+                <tr>
+                    <td><p>Blood Pressure </p></td>
+                    <td>:</td>
+                    <td>{{ BloodPressure }}</td>
+                </tr>
+                <tr>
+                    <td><p>Skin Thickness </p></td>
+                    <td>:</td>
+                    <td>{{ SkinThickness }}</td>
+                </tr>
+                <tr>
+                    <td><p>insulin </p></td>
+                    <td>:</td>
+                    <td>{{ Insulin }}</td>
+                </tr>
+                <tr>
+                    <td><p>BMI </p></td>
+                    <td>:</td>
+                    <td>{{ BMI }}</td>
+                </tr>
+                <tr>
+                    <td><p>Diabetes Prefigree Function </p></td>
+                    <td>:</td>
+                    <td>{{ DiabetesPedigreeFunction }}</td>
+                </tr>
+                <tr>
+                    <td><p>Age </p></td>
+                    <td>:</td>
+                    <td>{{ Age }}</td>
+                </tr>
+            </table>
+            
+		    <h1>Hasil klasifikasi Diabetes adalah</h1>
+            <h2> {{ hasil }}</h2>  
+            </div>
+                
+            </div>           
+        </section>
+    </body>
+</html>

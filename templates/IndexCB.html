@@ -1,0 +1,184 @@
+<html>
+    <head>        
+        <title>Aplikasi Klasifikasi Data Iris</title>
+    </head>
+    <style>
+        html, body, h1, h2, h3, p, img {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+        }
+        .cf:before,
+        .cf:after {
+            content: " ";
+            display: table;
+        }
+        .cf:after {
+            clear: both;
+        }
+        .cf {
+            *zoom: 1;
+        }
+
+        #global-container{
+            /* border: 1px solid red; */
+            display: flex;
+            
+        }
+        #container-left{
+            /* border: 1px solid blue; */
+            flex: 3;
+
+            display: flex;
+            flex-direction: column;
+            background-color: #4e504e;
+            min-height: 100vh;
+            padding: 80px 30px 30px 80px;
+            box-sizing: border-box;
+            gap: 50px;
+            
+        }
+        .judul h1{
+            color: white;
+            font-size: 48px;
+            text-transform: uppercase;
+        }
+        .judul p{
+            color: rgb(200, 200, 200);
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .judul a{
+            text-decoration: none;
+            color: rgb(228, 228, 228);
+        }
+
+        .form h2{
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+        .inputan{
+            display: flex;
+            gap: 30px;
+
+        }
+        .label1{
+            flex: 1;
+        }
+        label {
+            display: block;
+            color: #FFFDCE;
+            font-size: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+        .isi1{
+            flex: 2;
+        }
+        input {
+            display: block;
+            margin-bottom: 12px;
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: none;
+        }
+        .tombol{
+            margin: 15px 0px;
+        }
+        button {
+            display: block;
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: none;
+            background-color: white;
+            font-size: 20px;
+            font-weight: bolder;
+            color: rgb(41, 41, 41);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(93, 185, 93);
+            color: white;
+        }
+        .hasil{
+            margin-top: 30px;
+        }
+        .hasil label{
+            float: left;
+            margin-right: 20px;
+        }
+        .hasil h3{
+            float: left;
+            color: white;
+        }
+        .isi2{
+            margin-left: 40px;
+            flex: 2;
+        }
+        #container-right{
+            /* border: 1px solid red; */
+            background-color: #E2DED0;
+            flex: 2;
+        }
+    </style>
+
+    <body>
+        <div id="global-container">
+            <div id="container-left">
+                <div class="judul">
+                    <h1>Klasifikasi Pengidap Diabetes</h1>
+                    <p>Implementasi Algoritma Naive Bayes dalam Klasifikasi Pengidap Diabetes<br>Dataset: <a href="https://www.kaggle.com/pritsheta/diabetes-dataset">https://www.kaggle.com/pritsheta/diabetes-dataset</a></p>
+                </div>
+                <form action="{{ url_for('predict') }}" method="post">
+                    <div class="form">
+                        <div class="header">
+                            <h2>Input Data Pasien</h2>
+                        </div>
+                        <div class="inputan">
+                            <div class="label1">
+                                <label for="Pregnancies" >Pregnancies</label>
+                                <label for="glucose" >glucose</label >
+                                <label for="BloodPressure" >Blood Pressure</label >
+                                <label for="SkinThickness" >Skin Thickness</label >
+                                <label for="Insulin" >Insulin</label>
+                                <label for="BMI" >BMI</label >
+                                <label for="DiabetesPedigreeFunction" >Diabetes Pedigree Function</label >
+                                <label for="Age" >Age</label >
+                            </div>
+                            <div class="isi1">
+                                <input type="text" name="Pregnancies" placeholder="Pregnancies" require ="required"/>
+                                <input type="text" name="Glucose" placeholder="glucose" required="required"/>
+                                <input type="text" name="BloodPressure" placeholder="Blood Pressure" required="required"/>
+                                <input type="text" name="SkinThickness" placeholder="Skin Thickness" required="required"/>
+                                <input type="text" name="Insulin" placeholder="Insulin" require ="required"/>
+                                <input type="text" name="BMI" placeholder="BMI" required="required"/>
+                                <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required"/>
+                                <input type="text" name="Age" placeholder="Age" required="required"/>
+                            </div>
+                        </div>
+                        <div class="tombol">
+                            <button type="submit">Klasifikasi!</button>
+                        </div>
+                        <div class="hasil">
+                            <label for="hasil" >HASIL IDENTIFIKASI: </label>
+                            <h3> {{ hasil }}</h3>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+            <div id="container-right">
+                <div id="logo">
+                    
+                </div>
+                <div id="identitas">
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

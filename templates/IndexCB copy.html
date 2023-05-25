@@ -1,0 +1,217 @@
+<html>
+    <head>        
+        <title>Aplikasi Klasifikasi Data Iris</title>
+    </head>
+    <style>
+        html, body, h1, h2, h3, p, img {
+            margin: 0;
+            padding: 0;
+            font-family: arial;
+        }
+        .cf:before,
+        .cf:after {
+            content: " ";
+            display: table;
+        }
+        .cf:after {
+            clear: both;
+        }
+        .cf {
+            *zoom: 1;
+        }
+        .background {
+            background: url('https://images.pexels.com/photos/2280551/pexels-photo-2280551.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            background-position: center;
+            background-attachment: fixed;
+            /* filter: blur(8px); */
+            /* -webkit-filter: blur(8px); */
+        }
+        #global-container{
+            /* border: 1px solid blue; */
+            display: grid;
+            flex-direction: column;
+            /* background-color: #2c2c2c; */
+            /* min-height: 100vh; */
+            width: 100%;
+            box-sizing: border-box;
+            gap: 0px;
+            justify-content: center;
+            align-items: center;
+            
+            position: absolute;
+            top: 0;
+            right: 0px;
+            bottom: 0;
+            left: 0px;
+            /* min-width: 900px; */
+            
+        }
+        .container{
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 15px );
+            -webkit-backdrop-filter: blur( 15px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            padding: 50px;
+            box-sizing: border-box;
+            /* border: 1px solid red; */
+        }
+        .judul h1{
+            color: white;
+            font-size: 48px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .judul p{
+            color: rgb(200, 200, 200);
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .judul a{
+            text-decoration: none;
+            color: rgb(228, 228, 228);
+        }
+        .form h2{
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .inputan{
+            /* border: 1px solid rgb(255, 0, 179); */
+            gap: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .kotak {
+            display: flex;
+            /* border: 1px solid red; */
+            gap: 35px;
+        }
+        .label1 label {
+            display: block;
+            color: #FFFDCE;
+            font-size: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+        input {
+            display: block;
+            margin-bottom: 12px;
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: none;
+        }
+        .tombol{
+            /* border: 1px solid red; */
+            margin: 15px 0px;
+            display: grid;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        button {
+            display: block;
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: none;
+            background-color: white;
+            font-size: 20px;
+            font-weight: bolder;
+            color: rgb(41, 41, 41);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(93, 185, 93);
+            color: white;
+        }
+        .hasil{
+            margin-top: 40px;
+            display: grid;
+            justify-content: center;
+        }
+        .hasil label{
+            float: left;
+            margin-right: 20px;
+            color: #FFFDCE;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+        .hasil h3{
+            float: left;
+            color: white;
+        }
+        .isi2{
+            margin-left: 40px;
+            flex: 2;
+        }
+        /* .cr {
+            position: relative;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            opacity: 50%;
+        } */
+    </style>
+
+    <body>
+        <div class="background"></div>
+        <div id="global-container">
+            <div class="container">
+                <div class="judul">
+                    <h1>Klasifikasi Pengidap Diabetes</h1>
+                    <p>Implementasi Algoritma Naive Bayes dalam Klasifikasi Pengidap Diabetes<br>Dataset: <a href="https://www.kaggle.com/pritsheta/diabetes-dataset">https://www.kaggle.com/pritsheta/diabetes-dataset</a></p>
+                </div>
+                <form action="{{ url_for('predict') }}" method="post">
+                    <div class="form">
+                        <div class="header">
+                            <h2>Input Data Pasien</h2>
+                        </div>
+                        <div class="inputan">
+                            <div class="kotak">
+                                <div class="label1">
+                                    <label for="Pregnancies" >Pregnancies</label>
+                                    <label for="glucose" >glucose</label >
+                                    <label for="BloodPressure" >Blood Pressure</label >
+                                    <label for="SkinThickness" >Skin Thickness</label >
+                                    <label for="Insulin" >Insulin</label>
+                                    <label for="BMI" >BMI</label >
+                                    <label for="DiabetesPedigreeFunction" >Diabetes Pedigree Function</label >
+                                    <label for="Age" >Age</label >
+                                </div>
+                                <div class="isi1">
+                                    <input type="text" name="Pregnancies" placeholder="Pregnancies" require ="required"/>
+                                    <input type="text" name="Glucose" placeholder="glucose" required="required"/>
+                                    <input type="text" name="BloodPressure" placeholder="Blood Pressure" required="required"/>
+                                    <input type="text" name="SkinThickness" placeholder="Skin Thickness" required="required"/>
+                                    <input type="text" name="Insulin" placeholder="Insulin" require ="required"/>
+                                    <input type="text" name="BMI" placeholder="BMI" required="required"/>
+                                    <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required"/>
+                                    <input type="text" name="Age" placeholder="Age" required="required"/>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="tombol">
+                            <button type="submit">Klasifikasi!</button>
+                        </div>
+                        <div class="hasil">
+                            <div class="kotak2">
+                                <label for="hasil" >HASIL IDENTIFIKASI: </label>
+                                <h3> {{ hasil }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="cr"><p>Copyright © 2021 Muhammad Rafi Shidiq (>‿◠)✌</p></div> -->
+        </div>
+    </body>
+
+</html>
